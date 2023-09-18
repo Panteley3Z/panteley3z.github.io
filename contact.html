@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Panteley Zerkidanidi">
+    <meta name="description" content="This page contains all the things I am learning">
+    <title>Panteley Zerkidanidi</title>
+    <link rel="icon" href="/images/favicon-48x48_p3z.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon-192x192_p3z.png">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <script type="module" src="contact.js"></script>
+</head>
+
+<body>
+    <main class="main">
+        <article>
+            <h2></h2>
+            <form>
+                <fieldset>
+                    <legend>Оставить сообщение</legend>
+                    <p>
+                        <label class="form__label" for="name"></label>
+                        <input class="form__input" type="text" name="name" id="name" placeholder="От кого" autocomplete="on" required value="">
+                    </p>
+                    <p>
+                        <label class="form__label" for="mail-subject"></label>
+                        <input class="form__input" type="text" name="mail-subject" id="mail_subject" placeholder="Тема" value="">
+                    </p>
+                    <p>
+                        <label class="form__label" for="message-form">Ваше сообщение</label>
+                        <textarea class="form__text" name="message-form" id="message_form"></textarea>
+                    </p>
+                    <p>
+                        <input type="radio" name="state" id="male" value="employer" checked>
+                        <label for="male">Я работодатель (представитель)</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="state" id="female" value="justLook">
+                        <label for="female">Случайно получилось</label>
+                    </p>
+                    <hr>
+                    <button type="submit" class="common-button" id="form-submit">Подтвердить</button>
+                    <button type="reset" class="common-button btn-res">Отмена</button>
+                </fieldset>
+            </form>
+        </article>
+    </main>
+</body>
+
+</html>
