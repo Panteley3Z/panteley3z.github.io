@@ -1,32 +1,54 @@
 import { objectToArray } from "./object-to-array.js";
 import { tagsList } from "../content/tags-list.js";
 
-export function tagPlacer(interval = 1000) {
-    const article = document.querySelector(".main__article");
-    const figure = document.querySelector(".main__figure");
-    let arr = objectToArray(tagsList);
+export function tagPlacer(field, interval = 500) {
+    const hasTags = field.querySelector(".tags-container");
+    if (hasTags) {hasTags.remove()}
+    const figure = field.querySelector(".figure");
+    const tags = objectToArray(tagsList);
+    const fieldWidth = field.clientWidth;
+    const fieldHalfWidth = fieldWidth / 2;
+    const offsetFieldY = figure.offsetTop + 20;
+    const figureHeight = figure.clientHeight - 50;
+    const tcHalfHeight = figureHeight / 2;
+    const dirNE = "skew(-6deg, -10deg)";
+    const dirNW = "skew(6deg, 10deg)";
+    const tagsContainer = document.createElement("div");
+    tagsContainer.className = "tags-container";
+    tagsContainer.style.position = "absolute";
+    tagsContainer.style.top = `${offsetFieldY}px`;
+    tagsContainer.style.left = 0;
+    tagsContainer.style.width = `${fieldWidth}px`;
+    tagsContainer.style.height = `${figureHeight}px`;
+    field.appendChild(tagsContainer);
+    let count = 0;
 
-    setInterval(() => {
+    let idTPI = setInterval(() => {
+        if (count > tags.length * 4) clearInterval(idTPI);
+        let randomColor = Math.round(Math.random() * 360);
         const tag = document.createElement("div");
         tag.className = "tag nowrap";
         tag.style.position = "absolute";
-        let randomTag = Math.floor(Math.random() * arr.length);
-        let posY = Math.random() * (figure.clientHeight) + 132;
-        let posX = Math.random() * (article.clientWidth - 100);
-        let randomColor = Math.round(Math.random() * 360);
-        tag.innerText = `${arr[randomTag]}`;
+        tag.innerText = tags[Math.floor(Math.random() * tags.length)];
+        tagsContainer.appendChild(tag);
+        let tagWidth = tag.clientWidth;
+        let tagHeight = tag.clientHeight;
+        let posX = Math.round(Math.random() * fieldWidth);
+        if ((posX + tagWidth) > fieldWidth) {posX -= tagWidth}
+        let posY = Math.round(Math.random() * figureHeight);
+        if ((posY + tagHeight) > figureHeight) {posY -= tagHeight}
         tag.style.top = `${posY}px`;
         tag.style.left = `${posX}px`;
-        tag.style.backgroundColor = `hsl(${randomColor},100%,50%)`;
+        tag.style.backgroundColor = `hsla(${randomColor},100%,50%,0.9)`;
         if (randomColor < 20 || randomColor > 200) { tag.style.color = "white" }
         else { tag.style.color = "black" }
-        if (posY < article.clientHeight / 2) {
-            if (posX < (article.clientWidth / 2) - 50) {tag.style.transform = "skew(6deg, 12deg)"}
-            if (posX > article.clientWidth / 2) {tag.style.transform = "skew(-6deg, -12deg)"}
+        if (posY < tcHalfHeight) {
+            if (posX < fieldHalfWidth - tagWidth) {tag.style.transform = dirNW}
+            if (posX > fieldHalfWidth) {tag.style.transform = dirNE}
         } else {
-            if (posX < (article.clientWidth / 2) - 50) {tag.style.transform = "skew(-6deg, -12deg)"}
-            if (posX > article.clientWidth / 2) {tag.style.transform = "skew(6deg, 12deg)"}
+            if (posX < fieldHalfWidth - tagWidth) {tag.style.transform = dirNE}
+            if (posX > fieldHalfWidth) {tag.style.transform = dirNW}
         }
-        article.append(tag)
+        count++;
     }, interval)
 }

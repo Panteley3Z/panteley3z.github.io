@@ -1,0 +1,20 @@
+export const GOOGLE_ICONS_FF = {
+    bubblesGame: "bubble_chart",
+    calendar: "today",
+    colorPicker: "palette",
+    contact: "alternate_email",
+    clock: "watch",
+    dMode: "dark_mode",
+    lMode: "light_mode",
+    fullscreen: "fullscreen",
+    info: "info",
+    game: "bubble_chart",
+    //game: "stadia_controller",
+    lock: "lock",
+    unlock: "lock_open",
+    mainPage: "home",
+    project: "build",
+    refresh: "refresh",
+    settings: "settings",
+    language: "language"
+    }

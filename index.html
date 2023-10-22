@@ -1,48 +1,117 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Panteley Zerkidanidi">
-    <meta name="description" content="This page contains all the things I am learning">
-    <title>Panteley Zerkidanidi</title>
-    <link rel="icon" href="/images/favicon-48x48_p3z.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/images/apple-touch-icon-192x192_p3z.png">
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-    <link rel="stylesheet" href="style.css">
-    
-    <script type="module" src="app.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Panteley Zerkidanidi">
+  <meta name="description" content="This page contains all the things I am learning">
+  <title>Panteley Zerkidanidi</title>
+  <link rel="icon" href="/images/favicon-48x48_p3z.png" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon-192x192_p3z.png">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="style.css">
+
+  <script type="module" src="app.js"></script>
 </head>
+
 <body>
   <main id="main" class="main">
-    <article id="main-info" class="main__article text-center article">
-      <h1 id="main__header"><span class="label"></span></h1>
-      <div class="hello-hand animate">&#128075;</div>
-      <section>
-        <h2 id="main__subheader"><span class="label"></span></h2>
-        <figure id="main__figure" class="main__figure figure">
-          <img src="https://sun1-89.userapi.com/impf/c850736/v850736637/12a065/Q79JDjtADOM.jpg?size=2161x2160&quality=96&sign=38392109195b540a7412fc240d5e7b59&type=album">
-          <figcaption><span class="label"></span></figcaption>
-        </figure>
-        <p id="main__desc"><span class="label"></span></p>
-        <p>JavaScript, HTML5, CSS3, React</p>
+    <article id="main-info" class="main-article article">
+      <section id="main-section" class="main-section section">
+        <h1><span data-desc="my_full_name" class="label"></span></h1>
+        <div class="line-separator"></div>
+        <p>
+          <span class="age-count">35</span>
+          <span data-desc="learn" class="label"></span>
+          <span class="block-span">JavaScript, HTML5, CSS3, React</span>
+          <a href="#intro-section"><button data-desc="show_more" class="label primary-btn">-</button></a>
+        </p>
+
+      </section>
+      <figure class="main-figure figure hidden">
+        <img
+          src="https://sun1-89.userapi.com/impf/c850736/v850736637/12a065/Q79JDjtADOM.jpg?size=2161x2160&quality=96&sign=38392109195b540a7412fc240d5e7b59&type=album" />
+        <figcaption class="nowrap"><span data-desc="my_full_name" class="label"></span></figcaption>
+      </figure>
+      <section id="intro-section" class="intro-section section hide">
+        <div class="intro-block">
+          <p class="intro-portion hidden"><span data-desc="hello" class="label"></span> <span class="hello-hand animate">&#128075;</span></p>
+          <p class="intro-portion hidden"><span data-desc="introduce" class="label"></span> <span data-desc="my_name" class="label myname"></span>.</p>
+          <p class="intro-portion label hidden" data-desc="intro_autobio1"></p>
+          <p class="intro-portion label hidden" data-desc="intro_autobio2"></p>
+          <p class="intro-portion warn hidden"><span data-desc="intro_warn" class="label"></span>
+            <span class="hello-hand animate"> 🔨</span></p>
+          <p class="intro-portion label hidden" data-desc="intro_iuse"></p>
+        </div>
+
+        <div class="intro-projects"></div>
+
+        <form class="intro-feedback hide" action="" method="post">
+          <label for="message"></label>
+          <textarea class="textarea" id="message" name="message" rows="2">👍🏼</textarea>
+          <button type="submit" data-desc="send" class="primary-btn feedback-btn label"></button>
+        </form>
+      </section>
+
+      <section id="main-form-section" class="form-section section">
+        <address>
+          <p class="contact-link">
+            <a id="my-gmail"></a>
+            <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_2x_r5.png" width="109"/>.com
+          </p>
+          <p class="contact-link">
+            <a id="my-mail"></a>.ru
+          </p>
+          <p class="contact-link">
+            <a id="my-vk">
+              <svg width="50" height="50" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 14.4C0 7.61 0 4.22 2.1 2.1 4.23 0 7.62 0 14.4 0h1.2c6.79 0 10.18 0 12.3 2.1C30 4.23 30 7.62 30 14.4v1.2c0 6.79 0 10.18-2.1 12.3C25.77 30 22.38 30 15.6 30h-1.2c-6.79 0-10.18 0-12.3-2.1C0 25.77 0 22.38 0 15.6v-1.2Z" fill="#07F"></path><path d="M15.96 21.61c-6.84 0-10.74-4.68-10.9-12.48H8.5c.11 5.72 2.63 8.14 4.63 8.64V9.13h3.23v4.93c1.97-.21 4.05-2.46 4.75-4.94h3.22a9.53 9.53 0 0 1-4.38 6.23 9.87 9.87 0 0 1 5.13 6.26h-3.55c-.76-2.37-2.66-4.21-5.17-4.46v4.46h-.39Z" fill="#fff"></path></svg>ontakte</a>
+          </p>
+          <p class="contact-link">
+            <span class="material-symbols-outlined">call</span>
+            <a id="my-phone"></a>
+          </p>
+        </address>
+        <form class="hide">
+          <fieldset>
+            <legend><span data-desc="feedback" class="label"></legend>
+            <p>
+              <label class="form-label" for="name"></label>
+              <input class="form-input" type="text" name="name" id="name" placeholder="От кого" autocomplete="on"
+                required value="">
+            </p>
+            <p>
+              <label class="form-label" for="mail-subject"></label>
+              <input class="form-input" type="text" name="mail-subject" id="mail-subject" placeholder="Тема" value="">
+            </p>
+            <p>
+              <label class="form-label" for="message-form">Ваше сообщение</label>
+              <textarea class="form-text" name="message-form" id="message-form"></textarea>
+            </p>
+            <p>
+              <input type="radio" name="state" id="male" value="employer" checked>
+              <label for="male">Я работодатель (представитель)</label>
+            </p>
+            <p>
+              <input type="radio" name="state" id="female" value="justLook">
+              <label for="female">Случайно получилось</label>
+            </p>
+            <hr>
+            <!-- <button type="submit" class="common-button" id="form-submit">Подтвердить</button> -->
+            <!-- <button type="reset" class="common-button cancel-btn">Отмена</button> -->
+            <a href="#main-section" type="reset" class="cancel-btn">Отмена</a>
+          </fieldset>
+        </form>
       </section>
     </article>
-    <article id="elements-container" class="elements-container article"></article>
-    <section id="game-section" class="game-section section">
-      <h2>game</h2>
-    </section>
-    <section id="clock-section" class="clock-section section">
-      <h2>time</h2>
-    </section>
-  </main>
-  <div id="language-changer">
-    <button class="language-changer__btn"></button>
-  </div>
 
+  </main>
   <div id="up-down-scroller">
-    <button class="scroller__btn"></button>
+    <button class="scroller-button round-btn material-symbols-outlined">stat_2</button>
   </div>
 </body>
+
 </html>
