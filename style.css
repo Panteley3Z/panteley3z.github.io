@@ -237,7 +237,6 @@ p {
     font-size: var(--size-text-normal);
     line-height: var(--size-text-normal-height)
 }
-
 .main-section p { text-align: center }
 
 a { color: var(--colorSecondary) }
@@ -407,7 +406,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     border-radius: var(--radius-round);
-    animation: x-rotateElement 10s linear infinite;
+    animation: rotateElement 10s linear infinite;
 }
 .main-logo-img {
     position: relative;
