@@ -20,6 +20,7 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
 
     const maxRadius = Math.floor(Math.sqrt(canvasWidth * canvasHeight) / 15);
     const speed = 8;
+    const bubblesCountForNext = bubblesCount;
 
     drawPoster("BubbleS", 200);
 
@@ -33,7 +34,7 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
     }
 
     class Ball extends Shape {
-        #border = 2;
+        border = 2;
         exist = true;
         constructor(x, y, velX, velY, color, radius) {
             super(x, y, velX, velY);
@@ -44,7 +45,7 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
             ctx.beginPath();
             ctx.fillStyle = `rgba(${this.color},0.75)`;
             ctx.strokeStyle = `rgb(${this.color})`;
-            ctx.lineWidth = this.#border;
+            ctx.lineWidth = this.border;
             ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
             ctx.fill();
             ctx.stroke();
@@ -96,8 +97,8 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
     }
 
     class HunterBall extends Ball {
-        #border = 8;
-        #radiusIterator = 0;
+        border = 8;
+        radiusIterator = 0;
         pressed = false;
         constructor(x, y, velX, velY, color, radius) {
             super(...arguments);
@@ -129,28 +130,46 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
             canvas.addEventListener("mouseup", () => {
                 canvas.removeEventListener("mousemove", pointOnCanvas);
             })
+            canvas.addEventListener("touchstart", (ev) => {
+                ev.preventDefault();
+                this.pressed = true;
+                this.pointToCursor(ev);
+                canvas.addEventListener("touchmove", pointOnCanvas)
+            });
+            canvas.addEventListener("touchend", () => {
+                canvas.removeEventListener("touchmove", pointOnCanvas);
+            })
         }
 
         pointToCursor(event) {
             const canvasRect = canvas.getBoundingClientRect();
-            this.x = (canvasWidth / canvasRect.width) * (event.clientX - canvasRect.x);
-            this.y = (canvasHeight / canvasRect.height) * (event.clientY - canvasRect.y);
+            let pointX = 0;
+            let pointY = 0;
+            if(event.touches) {
+                pointX = event.touches[0].clientX;
+                pointY = event.touches[0].clientY;
+            } else {
+                pointX = event.clientX;
+                pointY = event.clientY;
+            }
+            this.x = (canvasWidth / canvasRect.width) * (pointX - canvasRect.x);
+            this.y = (canvasHeight / canvasRect.height) * (pointY - canvasRect.y);
         }
 
         // @Override
         draw() {
             ctx.beginPath();
             ctx.strokeStyle = `rgb(${this.color})`;
-            ctx.lineWidth = this.#border;
+            ctx.lineWidth = this.border;
             ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
             ctx.stroke()
         }
         // @Override
         update() {
-            if ((this.x + this.radius) >= canvasWidth) this.x = canvasWidth - this.radius - this.#border;
-            if ((this.y + this.radius) >= canvasHeight) this.y = canvasHeight - this.radius - this.#border;
-            if ((this.x - this.radius) <= 0) this.x = this.radius + this.#border;
-            if ((this.y - this.radius) <= 0) this.y = this.radius + this.#border;
+            if ((this.x + this.radius) >= canvasWidth) this.x = canvasWidth - this.radius - this.border;
+            if ((this.y + this.radius) >= canvasHeight) this.y = canvasHeight - this.radius - this.border;
+            if ((this.x - this.radius) <= 0) this.x = this.radius + this.border;
+            if ((this.y - this.radius) <= 0) this.y = this.radius + this.border;
         }
         // @Override
         collisionDetect() {
@@ -162,7 +181,7 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
                         const distance = Math.sqrt(dx * dx + dy * dy);
 
                         if (distance < this.radius) {
-                            this.#radiusIterator++;
+                            this.radiusIterator++;
                             this.color = ball.color;
                             bubblesCount--;
                             CC.updateCaption("catched", "catched");
@@ -170,7 +189,7 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
                                 CC.updateCaption("", "catched");
                                 CC.updateCaption(bubblesCount);
                             }, 500)
-                            this.radius = hunterBallRadius[this.#radiusIterator];
+                            this.radius = hunterBallRadius[this.radiusIterator];
                             ball.exist = false;
                         }
                     }
@@ -178,7 +197,6 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
             }
         }
     }
-
     const balls = [];
     while (balls.length < bubblesCount) {
         const currentRadius = randomRange(40, maxRadius);
@@ -219,7 +237,6 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
         let count = 0;
         let bC = str.length * 2;
 
-
         let idIntervalDraw = setInterval(() => {
             if (bC <= 1) {
                 clearInterval(idIntervalDraw);
@@ -242,7 +259,6 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
                 begin += letterSize;
                 count++
             }
-
             ctx.beginPath();
             ctx.fillStyle = `rgba(${r},${g},${b},0.5)`;
             ctx.lineWidth = 2;
@@ -267,7 +283,7 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
             CC.updateCaption("", "loading");
             CC.updateCaption(bubblesCount, "ongame");
             loop()
-        }, 2000)
+        }, 1000)
     }
 
     function loop() {
@@ -279,12 +295,19 @@ export function BubblesGame(bubblesCount = 14, fixHeight = 0) {
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         // ctx.fillStyle = "rgba(32, 36, 40, 0.5)";
         // ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
         if (bubblesCount === 0) {
             cancelAnimationFrame(idAnimation);
             setTimeout(() => {
                 CC.updateCaption("", "ongame");
-                CC.updateCaption("gameWin", "win")
+                CC.updateCaption("gameWin", "win");
+                setTimeout( () => {
+                    CC.updateCaption("", "win");
+                    bubblesCount = bubblesCountForNext;
+                    for (const ball of balls) { ball.exist = true }
+                    hunterBall.radiusIterator = 0;
+                    hunterBall.radius = hunterBallRadius[0];
+                    drawPoster("BubbleS", 200)
+                }, 1000)
             }, 1000)
         } else {
             for (const ball of balls) {

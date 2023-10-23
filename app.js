@@ -9,13 +9,9 @@ let autoScroll = true;
 let trigger = true;
 
 // ELEMENTS //
+const docHTML = document.documentElement;
 const body = document.body;
 const mainArticle = document.querySelector(".main-article");
-
-// WINDOW_SCROLLER //
-const scroller = document.getElementById("up-down-scroller");
-const scrollerButton = scroller.querySelector(".scroller-button");
-const docHTML = document.documentElement;
 
 // NAVIGATION
 const navigation = new Navigation();
@@ -74,17 +70,6 @@ contPhone.textContent = SOURCES.phoneStr;
 // tagPlacer(mainArticle);
 // window.addEventListener('resize', () => tagPlacer(mainArticle));
 
-// SCROLL //
-document.addEventListener("scroll", () => {
-    if (docHTML.scrollTop > docHTML.clientHeight / 2) {
-        scroller.style.opacity = "0.6";
-        if (docHTML.scrollTop >= (docHTML.scrollHeight - docHTML.clientHeight - 10)) {
-            scroller.style.opacity = "1"
-        }
-    } else { scroller.style.opacity = "0" }
-})
-scrollerButton.addEventListener("click", () => docHTML.scrollTo(0, 0));
-
 window.addEventListener("DOMContentLoaded", () => {
 
     langMode.init();
@@ -108,7 +93,7 @@ window.addEventListener("DOMContentLoaded", () => {
         simulatedPrintText(messages, showContinue);
         articleScroll();
     }
-    // showMoreBtn.click()
+    showMoreBtn.click()
 
     mainArticle.addEventListener("scroll", () => {
         if (mainArticle.scrollTop < mainArticle.clientHeight / 2) {
@@ -141,10 +126,10 @@ window.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 const summaryText = DICTIONARY.introSummary.desc;
                 introProjects.appendChild(createMessage("", summaryText));
-                scrollCinC(introProjects, mainArticle)
+                scrollInnerInOuter(introProjects, mainArticle)
                 setTimeout(() => {
                     introProjects.appendChild(createMessage("", DICTIONARY.introWillWait.desc));
-                    scrollCinC(introProjects, mainArticle)
+                    scrollInnerInOuter(introProjects, mainArticle)
                 }, 3000)
             }, 1000);
         }, 500)
@@ -173,7 +158,7 @@ function simulatedPrintText(elements, f, index = 0, slow = 60) {
     }, slow)
 }
 
-function scrollCinC(iN, oN, slow = 10) {
+function scrollInnerInOuter(iN, oN, slow = 10) {
     let dif = iN.getBoundingClientRect().bottom - oN.clientHeight;
     if (dif > 0) {
         let c = 0;
@@ -189,12 +174,12 @@ function articleScroll() {
         let dif = introBlock.getBoundingClientRect().bottom - mainArticle.clientHeight;
         if (!autoScroll) { console.log("stop-autoscroll"); clearInterval(scrollIntID) }
         if (dif > 0) { mainArticle.scrollTop += dif }
-    }, 400)
+    }, 200)
 }
 
 function showContinue() {
-    autoScroll = false;
-    introBlock.appendChild(new Button({ CN: "primary continue", text: "continue" }, nextToProjects))
+    introBlock.appendChild(new Button({ CN: "primary continue", text: "continue" }, nextToProjects));
+    autoScroll = false
 }
 
 function showProjects() {
@@ -207,7 +192,7 @@ function showProjects() {
             let params = [];
             if (e.target.classList.contains("card-btn")) { screenState = "fullscreen" }
             const modal = new Modal({ btn: "mso close" }, screenState);
-            if (p.title.desc == "game") { params = [3, modal.getHeight()] }
+            if (p.title.desc == "game") { params = [15, modal.getHeight()] }
             modal.addContent(p.project(...params))
         });
     })
@@ -227,13 +212,13 @@ function nextToProjects(e) {
     const txt = e.target.innerText.toLowerCase();
     e.target.remove();
     introBlock.appendChild(createMessage(txt, "", "feedback"));
+    scrollInnerInOuter(introBlock, mainArticle)
     setTimeout(() => {
         introBlock.appendChild(createMessage("ok!"));
         setTimeout( () => {
             introBlock.appendChild(createMessage("", DICTIONARY.introDescForProjects.desc));
-            scrollCinC(introBlock, mainArticle);
+            scrollInnerInOuter(introBlock, mainArticle);
             showProjects();
         }, 500)
-        scrollCinC(introBlock, mainArticle)
     }, 500)
 }

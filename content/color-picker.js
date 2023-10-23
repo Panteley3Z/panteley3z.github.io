@@ -17,12 +17,6 @@ export function ColorPicker(tiles = 5) {
         const p = document.createElement("div");
         p.className = "color--pals";
         color.appendChild(p);
-        for (let i = 1; i <= 3; i++) {
-            const span = document.createElement("span");
-            span.className = `color--pal pal-${i}`;
-            span.innerText = "--";
-            p.appendChild(span)
-        }
         const locker = document.createElement("button");
         locker.className = "btn-locker material-symbols-outlined";
         locker.innerText = GOOGLE_ICONS_FF.unlock;
@@ -31,6 +25,12 @@ export function ColorPicker(tiles = 5) {
             color.classList.toggle("unlocked");
             color.classList.contains("unlocked") ? locker.innerText = GOOGLE_ICONS_FF.unlock : locker.innerText = GOOGLE_ICONS_FF.lock;
         });
+        for (let i = 1; i <= 3; i++) {
+            const span = document.createElement("span");
+            span.className = `color--pal pal-${i}`;
+            span.innerText = "--";
+            p.appendChild(span)
+        }
     }
     const bottomControl = document.createElement("div");
     bottomControl.className = "color-picker__control";
@@ -70,6 +70,7 @@ export function ColorPicker(tiles = 5) {
             let locks = 0;
             for (let cT of colorTiles) {
                 let colorPals = cT.querySelectorAll(".color--pal");
+                let lockBtn = cT.querySelector(".btn-locker");
                 if (cT.classList.contains("unlocked")) {
                     if (refreshButton.classList.contains("dont")) {
                         refreshButton.classList.remove("dont")
@@ -81,6 +82,7 @@ export function ColorPicker(tiles = 5) {
                     // HSL PAL
                     // let color = `hsl(${h}, ${s}%, ${l}%)`;
                     cT.style.background = color;
+                    lockBtn.style.color = color;
                     addColorValue(color);
                     colorPals[0].innerText = r;
                     colorPals[1].innerText = g;
