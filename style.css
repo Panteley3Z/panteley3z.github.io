@@ -531,11 +531,8 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     justify-content: center;
     gap: var(--gap-normal);
     top: var(--gap-normal);
-    left: 1px;
+    left: var(--navbar-width-main-left);
     right: var(--gap-normal);
-    margin-top: 1px;
-    margin-left: var(--navbar-width-main-left);
-    margin-right: 1px;
     padding: var(--gap-normal);
     background-color: var(--colorWhite-40);
     backdrop-filter: blur(10px);
@@ -1128,7 +1125,10 @@ form hr {
         margin-left: 0;
         border-radius: 0 0 var(--radius-container) var(--radius-container);
     }
-    .main-figure {top: 0; margin-left: var(--gap-normal); border-radius: 0}
+    .main-figure {
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+    }
 }
-
-/* EXPERIMENT */
