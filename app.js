@@ -80,8 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
     navContacts.addEventListener("click", () => {
         introFigure.classList.remove("hidden");
         mainFormSection.classList.remove("hide");
-    })
-
+    });
     mainFormSection.style.paddingTop = `${introFigure.clientHeight}px`;
 
     showMoreBtn.onclick = () => {
@@ -93,7 +92,7 @@ window.addEventListener("DOMContentLoaded", () => {
         simulatedPrintText(messages, showContinue);
         articleScroll();
     }
-    showMoreBtn.click()
+    // showMoreBtn.click()
 
     mainArticle.addEventListener("scroll", () => {
         if (mainArticle.scrollTop < mainArticle.clientHeight / 2) {
