@@ -44,7 +44,7 @@ export function ColorPicker(tiles = 5) {
     bottomControl.append(results, refreshButton, infoButton);
     container.append(colors, bottomControl);
 
-    colors.addEventListener("wheel", (e) => {
+    container.addEventListener("wheel", (e) => {
         const h = document.querySelector(".fullscreen .modal-header");
         if (h && (e.wheelDeltaX < 1)) {
             if (e.wheelDeltaY < -4) {

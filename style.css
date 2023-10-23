@@ -798,7 +798,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
 .color-picker__control { position: relative; padding-top: var(--gap-normal) }
 
 .fullscreen .color-picker__control {
-    position: absolute;
+    position: fixed;
     width: 100%;
     bottom: 0;
     padding-bottom: var(--gap-normal);
