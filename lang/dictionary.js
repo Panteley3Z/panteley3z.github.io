@@ -30,6 +30,7 @@ export const DICTIONARY = {
     introWillWait: { desc: "intro_willwait", EN: TEXTS.EN_WillWait, RU: TEXTS.RU_WillWait },
     introAutobio1: { desc: "intro_autobio1", EN: TEXTS.EN_Autobio1, RU: TEXTS.RU_Autobio1 },
     introAutobio2: { desc: "intro_autobio2", EN: TEXTS.EN_Autobio2, RU: TEXTS.RU_Autobio2 },
+    introAutobio3: { desc: "intro_autobio3", EN: TEXTS.EN_Autobio3, RU: TEXTS.RU_Autobio3 },
     introWarnMessage: { desc: "intro_warn", EN: TEXTS.EN_WarnMessage, RU: TEXTS.RU_WarnMessage },
     introWhatIUse: { desc: "intro_iuse", EN: TEXTS.EN_WhatIUse, RU: TEXTS.RU_WhatIUse },
     introDescForProjects: { desc: "intro_descforprojects", EN: TEXTS.EN_IntroDescForProjects, RU: TEXTS.RU_IntroDescForProjects },

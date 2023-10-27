@@ -22,11 +22,14 @@ const enThanksFeedback = "Thank you for your feedback!";
 const ruWillWait = "Буду ждать с нетерпением! <span class='hello-hand animate'>🎩</span>";
 const enWillWait = "I will be looking forward to it! <span class='hello-hand animate'>🎩</span>";
 
-const ruAutobio1 = "Мне <span class='age-count'>35</span> лет, за спиной высшее образование и работа, не связанные с программированием.";
-const enAutobio1 = "I am <span class='age-count'>35</span> years old, with a university degree and a job behind my back, not related to programming.";
+const ruAutobio1 = "Мне <span class='age-count'>35</span> лет, за спиной высшее образование и основная работа, не связанные с программированием. Однако мне всегда было очень интересно это направление.";
+const enAutobio1 = "I am <span class='age-count'>35</span> years old, with a university degree and a main job behind my back, not related to programming. However, I have always been very interested in this field.";
 
-const ruAutobio2 = "Однако мне всегда было очень интересно это направление, и теперь я посвящаю большую часть свободного времени изучению frontend-разработки.";
-const enAutobio2 = "However, I have always been very interested in this field, and now I devote a large part of my free time to learning frontend development.";
+const ruAutobio2 = 'С 2008 по 2016 гг работал удаленно в ООО "ТРИОРИС", создавал CSS-стили оформления для соц-сети VK на сайте <a href="https://get-styles.ru" target="_blank">Get-Styles</a>.';
+const enAutobio2 = 'From 2008 to 2016, I worked remotely for "TRIORIS" LLC, creating CSS style sheets for the VK social network on the <a href="https://get-styles.ru" target="_blank">Get-Styles</a> website.';
+
+const ruAutobio3 = "На данный момент я посвящаю большую часть свободного времени изучению frontend-разработки.";
+const enAutobio3 = "At the moment, I devote most of my free time to learning frontend development.";
 
 const ruWarnMessage = "Внимание! Сайт находится на стадии разработки.";
 const enWarnMessage = "Attention! The site is under development.";
@@ -58,6 +61,8 @@ export const TEXTS = {
     EN_Autobio1: enAutobio1,
     RU_Autobio2: ruAutobio2,
     EN_Autobio2: enAutobio2,
+    RU_Autobio3: ruAutobio3,
+    EN_Autobio3: enAutobio3,
     RU_WarnMessage: ruWarnMessage,
     EN_WarnMessage: enWarnMessage,
     RU_WhatIUse: ruWhatIUse,

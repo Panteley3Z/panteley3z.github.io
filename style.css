@@ -30,8 +30,8 @@ figure, ul, ol, header h2 {padding: 0; margin: 0}
     --colorSecondary: rgb(0,200,200);
     --colorTertiary: rgb(240,140,0);
 
-    --colorBody-light: rgb(245, 245, 245);
-    --colorBody-dark: rgb(28, 28, 28);
+    --colorBody: rgb(245, 245, 245);
+    --dark-colorBody: rgb(28, 28, 28);
 
     --colorPrimary-05: rgb(60, 160, 174,0.5);
     --colorSecondary-05: rgb(0,200,200,0.5);
@@ -46,7 +46,7 @@ figure, ul, ol, header h2 {padding: 0; margin: 0}
     --colorOnTertiary: rgb(33, 33, 33,0.8);
 
     --colorPrimaryContainer: rgba(255,255,255,0.9);
-    --colorSecondaryContainer: rgba(255,255,255,0.8);
+    --colorSecondaryContainer: rgba(255,255,255,0.4);
     --colorPrimaryContainer-over: rgba(255, 255, 255,0.1);
     --colorSecondaryContainer-over: rgba(255,255,255,0.1);
 
@@ -56,23 +56,13 @@ figure, ul, ol, header h2 {padding: 0; margin: 0}
     --colorRed: rgba(220, 30, 30,0.8);
     --colorYellow: rgba(254, 250, 0);
     --colorGreen: rgba(0, 150, 0);
-
     --colorWarn: rgba(255, 150, 0, 0.5);
-
-    --colorWhite-40: rgba(255, 255, 255,0.4);
     --colorWhite-60: rgba(255, 255, 255,0.6);
     --colorWhite-80: rgba(255, 255, 255,0.8);
-    --colorWhite-90: rgba(255, 255, 255,0.9);
-    --colorDarkGray: rgb(55, 55, 55);
-    --colorDarkGray-80: rgba(33, 33, 33, 0.8);
     --colorShadow: rgba(127,127,127,0.5);
-    --colorBlack-40: rgba(11, 11, 11, 0.4);
-    --colorBlack-60: rgba(11, 11, 11, 0.6);
-    --colorBlack-80: rgba(11, 11, 11, 0.8);
-    --colorBlack-90: rgba(11, 11, 11, 0.9);
     
     --dark-colorPrimaryContainer: rgba(15,15,15,0.9);
-    --dark-colorSecondaryContainer: rgba(15,15,15,0.8);
+    --dark-colorSecondaryContainer: rgba(15,15,15,0.4);
     --dark-colorPrimaryContainer-over: rgba(33, 33, 33,0.1);
     --dark-colorSecondaryContainer-over: rgba(33,33,33,0.1);
 
@@ -115,26 +105,16 @@ figure, ul, ol, header h2 {padding: 0; margin: 0}
     --size-goolge-icon-in-button: 20px;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     :root {
-        --colorPrimary: rgb(0, 140, 212);
-        --colorSecondary: rgb(50, 180, 240);
-        --colorTertiary: rgb(250, 196, 46);
-
-        --colorOnPrimary: #f0faff;
-        --colorOnSecondary: #ffffff;
-        --colorOnTertiary: #333333;
-
-        --colorBody: rgb(16,20,26);
-        --colorPrimaryContainer: rgb(28,34,44);
-        --colorSecondaryContainer: rgba(34,42,52,0.8);
-        --colorTertiaryContainer: rgb(42,50,64);
-    
-        --colorOnPrimaryContainer: #f0f0f0;
-        --colorOnSecondaryContainer: #f0f0f0;
-        --colorOnTertiaryContainer: #ffffff;
+        --colorBody: rgb(28, 28, 28);
+        --colorPrimaryContainer: rgba(15,15,15,0.9);
+        --colorSecondaryContainer: rgba(15,15,15,0.8);
+        --colorPrimaryContainer-over: rgba(33, 33, 33,0.1);
+        --colorSecondaryContainer-over: rgba(33,33,33,0.1);
+        --colorOnContainer: rgba(255, 255, 255,0.8);
     }
-} */
+}
 
 /*GOOGLE_ICONS*/
 .material-symbols-outlined {
@@ -200,9 +180,9 @@ figure, ul, ol, header h2 {padding: 0; margin: 0}
 /*UTILITY*/
 body {
     font-family: var(--FF);
-    background: var(--colorBody-light);
+    background: var(--colorBody);
 }
-.body-dark, .body-dark .main-section .line-separator { background: var(--colorBody-dark) }
+.body-dark, .body-dark .main-section .line-separator { background: var(--dark-colorBody) }
 
 .nowrap {white-space: nowrap}
 .text-center {text-align: center}
@@ -245,10 +225,12 @@ a { color: var(--colorSecondary) }
 
 .body-dark p { color: var(--dark-colorOnContainer) }
 
-.textarea { border-color: var(--colorPrimary) }
-
+.textarea {
+    background: var(--colorSecondaryContainer);
+    border-color: var(--colorPrimary);
+}
 .body-dark .textarea {
-    background: var(--colorBlack-40);
+    background: var(--dark-colorSecondaryContainer);
     color: var(--dark-colorOnContainer);
 }
 div .warn {
@@ -270,7 +252,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     border-color: var(--colorTertiary);
     box-shadow:
         0 0 2px 0 var(--colorTertiary),
-        inset 0 0 4px 1px white;
+        inset 0 0 4px 1px var(--colorPrimaryContainer);
     border-radius: var(--radius-button);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -443,13 +425,12 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     opacity: 0.9;
     cursor: pointer;
 }
-.nav-container a:hover {opacity: 1; text-shadow: 0 0 4px var(--colorWhite-60)}
-.body-dark .nav-container a:hover {text-shadow: 0 0 4px var(--colorShadow)}
+.nav-container a:hover {opacity: 1; text-shadow: 0 0 4px var(--colorShadow)}
 
 .nav-container span {
     display: block;
     margin-top: 4px;
-    color: var(--colorDarkGray-80);
+    color: var(--colorOnContainer);
 }
 .body-dark .nav-container span { color: var(--dark-colorOnContainer) }
 
@@ -462,11 +443,11 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     width: var(--size-box-bigger);
     height: var(--size-box-bigger);
     line-height: var(--size-box-bigger);
-    box-shadow: 0 0 0 2px var(--colorDarkGray-80);
+    box-shadow: 0 0 0 2px var(--colorOnContainer);
     border-radius: var(--radius-round);
     transition: transform 1s;
 }
-#color-mode-btn:hover .icon-span { box-shadow: 0 0 0 2px var(--colorDarkGray-80), 0 0 4px 0 var(--colorWhite-80) }
+#color-mode-btn:hover .icon-span { box-shadow: 0 0 0 2px var(--colorOnContainer), 0 0 4px 0 var(--colorOnContainer) }
 .body-dark #color-mode-btn .icon-span { box-shadow: 0 0 0 2px var(--dark-colorOnContainer) }
 .body-dark #color-mode-btn:hover .icon-span { box-shadow: 0 0 0 2px var(--dark-colorOnContainer), 0 0 6px 2px var(--colorShadow) }
 
@@ -485,7 +466,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     margin-left: var(--navbar-width-main-left);
     box-shadow: 0 0 4px 0 var(--colorShadow);
     overflow: hidden;
-    background-color: var(--colorWhite-90);
+    background-color: var(--colorPrimaryContainer);
     border-radius: var(--radius-container);
 }
 .body-dark .main {background: var(--dark-colorPrimaryContainer)}
@@ -518,7 +499,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
 .main-section .line-separator {
     width: 90%;
     height: 3px;
-    background: radial-gradient(var(--colorTertiary), white 60%);
+    background: radial-gradient(var(--colorTertiary), var(--colorPrimaryContainer) 60%);
 }
 .body-dark .main-section .line-separator { background: radial-gradient(var(--colorTertiary), var(--dark-colorPrimaryContainer) 60%) }
 
@@ -534,7 +515,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     left: var(--navbar-width-main-left);
     right: var(--gap-normal);
     padding: var(--gap-normal);
-    background-color: var(--colorWhite-40);
+    background-color: var(--colorSecondaryContainer);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--colorPrimary-t);
@@ -543,7 +524,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
 }
 .body-dark .main-figure,
 .body-dark .intro-feedback {
-    background-color: var(--colorBlack-40);
+    background-color: var(--dark-colorSecondaryContainer);
 }
 .main-figure img {
     width: 100px;
@@ -604,7 +585,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     bottom: 0;
     margin-left: -16px;
     padding: var(--gap-normal);
-    background-color: var(--colorWhite-40);
+    background-color: var(--colorSecondaryContainer);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     text-align: center;
@@ -818,6 +799,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     position: absolute;
     background: whitesmoke;
     font-family: 'Courier New', Courier, monospace;
+    color: rgb(15,15,15);
     transition: 0.4s;
 }
 .body-dark .color-picker__control .colors-results {
@@ -843,13 +825,13 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     right: 0;
     bottom: 0;
     padding: 0 var(--gap-normal);
-    background: var(--colorWhite-40);
+    background: var(--colorSecondaryContainer);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 111;
     transition-duration: 0.5s;
 }
-.body-dark .modal-shade { background: var(--colorBlack-40) }
+.body-dark .modal-shade { background: var(--dark-colorSecondaryContainer) }
 
 .modal {
     position: relative;
@@ -858,7 +840,7 @@ button { border-style: solid; cursor: pointer; transition: all 0.2s }
     margin-right: auto;
     max-height: 96vh;
     /*margin-top calculated width js */
-    background-color: white;
+    background-color: var(--colorPrimaryContainer);
     border-radius: var(--radius-elem-in-container);
     box-shadow: 0 0 8px 0 var(--colorShadow);
     overflow-x: hidden;
